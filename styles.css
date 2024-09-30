@@ -1,0 +1,569 @@
+:root {
+    --bg-color: #f0e6f6;
+    --text-color: #333;
+    --primary-color: #8a2be2;
+    --secondary-color: #ff69b4;
+    --accent-color: #00ced1;
+}
+
+.dark-theme {
+    --bg-color: #1a1a2e;
+    --text-color: #f0f0f0;
+    --primary-color: #9d4edd;
+    --secondary-color: #ff85a2;
+    --accent-color: #00fff5;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    background-color: var(--primary-color);
+    padding: 0.5rem 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-icon {
+    width: 40px;
+    height: auto;
+}
+
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: var(--bg-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--accent-color);
+}
+
+#menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--bg-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: relative; /* Added for absolute positioning of icons */
+    width: 40px; /* Ensure a fixed width for consistency */
+    height: 40px; /* Ensure a fixed height for consistency */
+}
+
+#menu-toggle i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center icons exactly on top of each other */
+    font-size: 1.5rem;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Hide X by default */
+#menu-toggle .fa-times {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-90deg); /* Hidden and rotated initially */
+}
+
+#menu-toggle.active .fa-bars {
+    opacity: 0; /* Hide hamburger when menu is active */
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+#menu-toggle.active .fa-times {
+    opacity: 1; /* Show X when menu is active */
+    transform: translate(-50%, -50%) rotate(0); /* Reset rotation to 0 */
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+section {
+    margin-bottom: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+    padding: 2rem;
+    border-radius: 10px;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h1, h2, h3 {
+    font-family: 'Yeseva One', cursive;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+#home {
+    background-color: var(--bg-color);
+}
+
+#about {
+    background-color: rgba(138, 43, 226, 0.1);
+    padding: 2rem;
+    border-radius: 20px;
+    margin-bottom: 3rem;
+}
+
+#about h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.avatar-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-text {
+    max-width: 600px;
+}
+
+.about-content .name {
+    font-size: 2rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.about-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+#galleries {
+    background-color: rgba(255, 105, 180, 0.1);
+}
+
+#skills {
+    background-color: rgba(0, 206, 209, 0.1);
+}
+
+#anime-list {
+    background-color: rgba(138, 43, 226, 0.1);
+}
+
+#contact {
+    background-color: rgba(255, 105, 180, 0.1);
+}
+
+.hero {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.social-links {
+    margin-top: 1rem;
+}
+
+.social-links a {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--secondary-color);
+}
+
+.gallery-grid, .anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-card, .anime-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 1rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery-card:hover, .anime-card:hover {
+    transform: translateY(-5px);
+}
+
+.anime-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.anime-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        var(--accent-color) 90deg,
+        transparent 180deg
+    );
+    opacity: 0;
+    transition: opacity 0.3s;
+    animation: rotate 4s linear infinite;
+    pointer-events: none;
+}
+
+.anime-card:hover::before {
+    opacity: 0.3;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.gallery-card img, .anime-card img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+}
+
+.skill {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    padding: 1rem;
+    text-align: center;
+}
+
+.skill img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0.5rem;
+}
+
+.skill-name {
+    margin-bottom: 0.5rem;
+}
+
+.skill-bar {
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.skill-level {
+    height: 100%;
+    background-color: var(--accent-color);
+    transition: width 1s;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.contact-container > * {
+    flex: 1;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 0.5rem;
+}
+
+input, textarea, button {
+    padding: 0.5rem;
+    border: none;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+}
+
+.contact-info {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.contact-info h3 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.contact-info p {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+.contact-info i {
+    margin-right: 0.5rem;
+    color: var(--accent-color);
+}
+
+.contact-info .social-links {
+    margin-top: 1rem;
+}
+
+.contact-info .social-links a {
+    font-size: 1.5rem;
+    margin: 0 0.5rem;
+}
+
+#theme-toggle {
+    background-color: transparent;
+    color: var(--bg-color);
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+}
+
+#sparkles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.sparkle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #ffeb3b;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: sparkle-fade 1s ease-out;
+}
+
+@keyframes sparkle-fade {
+    0% { transform: scale(0); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 0; }
+}
+
+@media (min-width: 768px) {
+    .about-content {
+        flex-direction: row;
+        text-align: left;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .avatar-container {
+        width: 250px;
+        height: 250px;
+        margin-bottom: 0;
+    }
+
+    .about-text {
+        flex: 1;
+    }
+
+    .about-content .name {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .about-content p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .about-content {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .avatar-container {
+        width: 300px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 0.5rem;
+        justify-content: space-between;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    nav {
+        order: 2;
+    }
+
+    #menu-toggle {
+        display: block;
+        order: 1;
+    }
+
+    #nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary-color);
+        padding: 1rem 0;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    #nav-menu.show {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    nav ul li {
+        margin: 0.5rem 0;
+        width: 100%;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 0.5rem 0;
+    }
+
+    .header-controls {
+        order: 3;
+    }
+
+    #theme-toggle {
+        margin: 0;
+    }
+
+    .contact-container {
+        flex-direction: column;
+    }
+
+    .contact-info {
+        width: 100%;
+    }
+
+    /* Additional transitions for mobile view */
+    #menu-toggle .fa-bars,
+    #menu-toggle .fa-times {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    #menu-toggle .fa-times {
+        position: absolute;
+        opacity: 0;
+        transform: rotate(-90deg);
+    }
+
+    #menu-toggle.active .fa-bars {
+        opacity: 0;
+        transform: rotate(90deg);
+    }
+
+    #menu-toggle.active .fa-times {
+        opacity: 1;
+        transform: rotate(0);
+    }
+}
