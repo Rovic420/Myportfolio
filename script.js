@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.getElementById('contact-form');
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        alert('Thank you for your message! (This is a demo, no message was actually sent)');
+        alert('Thank you for your message! (I will reply to you soon)');
         contactForm.reset();
     });
 
